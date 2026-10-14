@@ -142,6 +142,7 @@
   .scroll-hint .line-i::after{content:'';position:absolute;left:0;width:100%;height:40%;background:#fff;animation:scrollHint 2.2s cubic-bezier(.76,0,.24,1) infinite;}
   @keyframes scrollHint{0%{top:-40%;}100%{top:100%;}}
 
+  /* Marquee */
   .marquee{padding:clamp(34px,6vh,60px) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
     overflow:hidden;white-space:nowrap;display:flex;position:relative;background:rgba(10,10,15,.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
   .marquee::before,.marquee::after{content:'';position:absolute;top:0;bottom:0;width:14vw;z-index:2;pointer-events:none;}
@@ -155,6 +156,21 @@
   .marquee__track b{font-weight:400;color:rgba(255,255,255,.6);font-family:'Instrument Serif',serif;font-style:italic;}
   @keyframes marquee{to{transform:translateX(-50%);}}
 
+  /* Dual Marquee */
+  .dual-marquee{padding:clamp(60px,10vh,110px) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;position:relative;background:rgba(10,10,15,.5);}
+  .dual-marquee .row{display:flex;white-space:nowrap;margin-bottom:16px;overflow:visible;}
+  .dual-marquee .row:last-child{margin-bottom:0;}
+  .dual-marquee .track{display:flex;gap:56px;animation:scrollLeft 30s linear infinite;flex-shrink:0;padding-right:56px;}
+  .dual-marquee .row:nth-child(2) .track{animation:scrollRight 30s linear infinite;}
+  .dual-marquee .track span{font-size:clamp(38px,7vw,110px);font-weight:400;letter-spacing:-.05em;line-height:1;
+    display:inline-flex;align-items:center;gap:56px;color:rgba(255,255,255,.8);}
+  .dual-marquee .row:nth-child(2) .track span{color:transparent;-webkit-text-stroke:1.2px rgba(255,255,255,.35);}
+  .dual-marquee .track span::after{content:'✦';font-size:.35em;color:var(--violet);-webkit-text-stroke:0;opacity:1;}
+  .dual-marquee em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--violet);-webkit-text-stroke:0;}
+  @keyframes scrollLeft{to{transform:translateX(-50%);}}
+  @keyframes scrollRight{from{transform:translateX(-50%);}to{transform:translateX(0);}}
+
+  /* About */
   .about__text{font-size:clamp(1.6rem,4.4vw,4rem);line-height:1.16;letter-spacing:-.038em;font-weight:400;max-width:22ch;}
   .about__text .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;}
   .about__text .w > i{display:inline-block;font-style:normal;transform:translateY(110%);transition:transform 1.1s var(--ease-out);}
@@ -166,6 +182,7 @@
   .about__grid h4::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--violet);box-shadow:0 0 8px var(--violet);}
   .about__grid p{color:var(--fg-2);font-size:13.5px;line-height:1.8;font-weight:300;max-width:40ch;}
 
+  /* Services */
   .services{display:flex;flex-direction:column;}
   .service{border-top:1px solid var(--line);padding:clamp(28px,4.6vh,48px) 0;position:relative;overflow:hidden;
     display:flex;align-items:flex-start;gap:clamp(20px,5vw,80px);transition:padding-left .8s var(--ease-out);}
@@ -190,6 +207,30 @@
   .service:hover .service__arrow{background:var(--violet);border-color:var(--violet);color:#0a0a0f;transform:rotate(-45deg);}
   @media (max-width:640px){.service__arrow{display:none;}}
 
+  /* ⭐ PROCESS */
+  .process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;
+    background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;}
+  .process-card{background:var(--bg);padding:clamp(36px,5vw,60px) clamp(28px,4vw,44px);position:relative;overflow:hidden;
+    transition:background .5s;}
+  .process-card:hover{background:var(--bg-2);}
+  .process-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg, transparent, var(--violet), transparent);
+    transform:translateX(-100%);transition:transform .8s var(--ease-out);}
+  .process-card:hover::before{transform:translateX(0);}
+  .process-card__num{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--violet);margin-bottom:24px;display:block;}
+  .process-card__icon{width:52px;height:52px;border-radius:14px;margin-bottom:28px;
+    background:linear-gradient(135deg, rgba(139,124,246,.2), rgba(94,234,212,.1));
+    border:1px solid rgba(139,124,246,.3);
+    display:flex;align-items:center;justify-content:center;font-size:22px;
+    transition:transform .6s var(--ease-out);}
+  .process-card:hover .process-card__icon{transform:scale(1.1) rotate(-8deg);}
+  .process-card h3{font-size:clamp(1.3rem,2.2vw,1.7rem);font-weight:400;letter-spacing:-.03em;margin-bottom:14px;line-height:1.15;}
+  .process-card h3 em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--violet);}
+  .process-card p{font-size:13px;line-height:1.75;color:var(--fg-2);font-weight:300;}
+  .process-card__dur{margin-top:24px;padding-top:20px;border-top:1px solid var(--line);
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;}
+
+  /* ⭐ WORK */
   .work-scroll{position:relative;height:520vh;padding:0;}
   .work-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;
     justify-content:center;padding-top:70px;padding-bottom:70px;}
@@ -257,6 +298,49 @@
   .work-dots span.active::after{transform:scaleX(1);}
   .work-dots span.active{width:36px;}
 
+  /* ⭐ TESTIMONIALS */
+  .testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(20px,3vw,32px);}
+  .testimonial{padding:clamp(32px,4vw,44px);border:1px solid var(--line);border-radius:20px;
+    background:linear-gradient(160deg, rgba(255,255,255,.025), rgba(255,255,255,0));
+    position:relative;overflow:hidden;transition:border-color .5s, transform .5s var(--ease-out);}
+  .testimonial:hover{border-color:rgba(255,255,255,.22);transform:translateY(-4px);}
+  .testimonial::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg, transparent, rgba(139,124,246,.5), transparent);}
+  .testimonial__quote{font-size:clamp(1.05rem,1.5vw,1.25rem);line-height:1.6;font-weight:300;
+    letter-spacing:-.01em;margin-bottom:28px;color:var(--fg);}
+  .testimonial__quote em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--violet);}
+  .testimonial__author{display:flex;align-items:center;gap:14px;padding-top:20px;border-top:1px solid var(--line);}
+  .testimonial__avatar{width:44px;height:44px;border-radius:50%;flex-shrink:0;
+    background:linear-gradient(135deg, var(--violet), var(--cyan));
+    display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#0a0a0f;}
+  .testimonial__info strong{font-size:13.5px;font-weight:500;display:block;color:var(--fg);}
+  .testimonial__info span{font-size:11.5px;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:.04em;}
+  .testimonial__stars{margin-left:auto;font-size:12px;color:var(--peach);letter-spacing:.06em;}
+
+  /* ⭐ AWARDS */
+  .awards{display:flex;flex-direction:column;}
+  .award{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(20px,4vw,60px);align-items:center;
+    padding:clamp(22px,3.4vh,34px) 0;border-top:1px solid var(--line);
+    transition:padding-left .6s var(--ease-out);position:relative;}
+  .award:last-child{border-bottom:1px solid var(--line);}
+  .award::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
+    background:linear-gradient(180deg, var(--violet), var(--cyan));
+    transform:scaleY(0);transform-origin:top;transition:transform .6s var(--ease-out);}
+  .award:hover::before{transform:scaleY(1);}
+  .award:hover{padding-left:20px;}
+  .award__year{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--dim);letter-spacing:.14em;}
+  .award__body{min-width:0;}
+  .award__title{font-size:clamp(1.15rem,2.2vw,1.55rem);letter-spacing:-.025em;font-weight:400;line-height:1.2;transition:color .4s;}
+  .award__title em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--violet);}
+  .award:hover .award__title{color:var(--violet);}
+  .award__org{font-size:12px;color:var(--muted);margin-top:5px;letter-spacing:.02em;}
+  .award__badge{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;
+    padding:7px 14px;border:1px solid var(--line-2);border-radius:99px;color:var(--fg-2);white-space:nowrap;
+    transition:border-color .4s, color .4s;}
+  .award:hover .award__badge{border-color:var(--violet);color:var(--violet);}
+  @media (max-width:640px){.award__badge{display:none;}.award{grid-template-columns:auto 1fr;}}
+
+  /* Stats */
   .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:clamp(28px,4vw,60px);padding:clamp(60px,10vh,110px) 0;}
   .stat__num{font-size:clamp(2.6rem,6.4vw,5rem);font-weight:300;letter-spacing:-.05em;line-height:1;
     background:linear-gradient(180deg,#fff 30%, #55555f 100%);-webkit-background-clip:text;background-clip:text;
@@ -271,6 +355,28 @@
   .client:hover{color:var(--fg);background:var(--bg-2);}
   .client em{font-family:'Instrument Serif',serif;font-style:italic;}
 
+  /* ⭐ FAQ */
+  .faq{display:flex;flex-direction:column;}
+  .faq-item{border-top:1px solid var(--line);}
+  .faq-item:last-child{border-bottom:1px solid var(--line);}
+  .faq-q{width:100%;background:none;border:none;color:var(--fg);font-family:inherit;font-size:clamp(1.1rem,2vw,1.4rem);
+    font-weight:400;letter-spacing:-.02em;text-align:left;padding:clamp(24px,3.6vh,34px) 0;cursor:pointer;
+    display:flex;align-items:center;justify-content:space-between;gap:24px;transition:color .4s;}
+  .faq-q:hover{color:var(--violet);}
+  .faq-q__icon{width:32px;height:32px;flex-shrink:0;border:1px solid var(--line-2);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;position:relative;
+    transition:transform .5s var(--ease-out), background .4s, border-color .4s, color .4s;}
+  .faq-q__icon::before,.faq-q__icon::after{content:'';position:absolute;background:currentColor;transition:transform .4s;}
+  .faq-q__icon::before{width:12px;height:1.5px;}
+  .faq-q__icon::after{width:1.5px;height:12px;}
+  .faq-item.open .faq-q__icon{background:var(--violet);border-color:var(--violet);color:#0a0a0f;transform:rotate(180deg);}
+  .faq-item.open .faq-q__icon::after{transform:scaleY(0);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .6s var(--ease-out);}
+  .faq-a__inner{padding:0 0 clamp(24px,3.6vh,34px) 0;color:var(--fg-2);font-size:14px;line-height:1.8;
+    font-weight:300;max-width:70ch;}
+  .faq-a__inner em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--violet);}
+
+  /* Contact */
   .contact{padding:clamp(120px,22vh,220px) 0 clamp(40px,7vh,80px);position:relative;}
   .contact__title{font-size:clamp(2.2rem,7.2vw,6.6rem);letter-spacing:-.052em;font-weight:400;line-height:1;
     margin-bottom:clamp(48px,8vh,80px);max-width:14ch;}
@@ -316,7 +422,7 @@
   <div class="loader" id="loader">
     <div class="loader__top">
       <span class="tag">NL Studio ©2025</span>
-      <span>Portfolio / v3.3</span>
+      <span>Portfolio / v4.0</span>
     </div>
     <div class="loader__mid">
       <div class="loader__num"><span id="loaderNum">0</span><sup>%</sup></div>
@@ -417,6 +523,30 @@
       </div>
     </section>
 
+    <!-- ⭐ DUAL MARQUEE -->
+    <div class="dual-marquee reveal">
+      <div class="row">
+        <div class="track">
+          <span>Sáng tạo <em>không ngừng</em></span>
+          <span>Chuyển động <em>mượt mà</em></span>
+          <span>Sáng tạo <em>không ngừng</em></span>
+          <span>Chuyển động <em>mượt mà</em></span>
+          <span>Sáng tạo <em>không ngừng</em></span>
+          <span>Chuyển động <em>mượt mà</em></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="track">
+          <span>Thiết kế có <em>chiều sâu</em></span>
+          <span>Code có <em>linh hồn</em></span>
+          <span>Thiết kế có <em>chiều sâu</em></span>
+          <span>Code có <em>linh hồn</em></span>
+          <span>Thiết kế có <em>chiều sâu</em></span>
+          <span>Code có <em>linh hồn</em></span>
+        </div>
+      </div>
+    </div>
+
     <section class="block block--line" id="services">
       <div class="block__head reveal">
         <div class="left"><span class="block__index">02</span><h2 class="block__title">Dịch vụ</h2></div>
@@ -462,10 +592,48 @@
       </div>
     </section>
 
+    <!-- ⭐ PROCESS -->
+    <section class="block block--line">
+      <div class="block__head reveal">
+        <div class="left"><span class="block__index">03</span><h2 class="block__title">Quy trình làm việc</h2></div>
+        <span class="block__meta">Process / How I work</span>
+      </div>
+      <div class="process-grid">
+        <div class="process-card reveal">
+          <span class="process-card__num">/ 01</span>
+          <div class="process-card__icon">🔍</div>
+          <h3>Khám phá <em>& lắng nghe</em></h3>
+          <p>Bắt đầu bằng việc hiểu thương hiệu, mục tiêu và người dùng. Đặt câu hỏi đúng — trước khi viết dòng code nào.</p>
+          <div class="process-card__dur">Giai đoạn: 1-2 tuần</div>
+        </div>
+        <div class="process-card reveal">
+          <span class="process-card__num">/ 02</span>
+          <div class="process-card__icon">✏️</div>
+          <h3>Thiết kế <em>& thử nghiệm</em></h3>
+          <p>Phác thảo ý tưởng, dựng prototype, kiểm tra chuyển động. Mỗi pixel đều có lý do tồn tại.</p>
+          <div class="process-card__dur">Giai đoạn: 2-3 tuần</div>
+        </div>
+        <div class="process-card reveal">
+          <span class="process-card__num">/ 03</span>
+          <div class="process-card__icon">⚡</div>
+          <h3>Phát triển <em>& tinh chỉnh</em></h3>
+          <p>Viết code sạch, tối ưu hiệu năng, thêm những vi tương tác khiến trải nghiệm trở nên sống động.</p>
+          <div class="process-card__dur">Giai đoạn: 3-6 tuần</div>
+        </div>
+        <div class="process-card reveal">
+          <span class="process-card__num">/ 04</span>
+          <div class="process-card__icon">🚀</div>
+          <h3>Ra mắt <em>& đồng hành</em></h3>
+          <p>Deploy, theo dõi, tối ưu. Tôi không biến mất sau khi website lên sóng — tôi đồng hành dài lâu.</p>
+          <div class="process-card__dur">Giai đoạn: liên tục</div>
+        </div>
+      </div>
+    </section>
+
     <section class="work-scroll" id="work">
       <div class="work-sticky">
         <div class="block__head">
-          <div class="left"><span class="block__index">03</span><h2 class="block__title">Dự án chọn lọc</h2></div>
+          <div class="left"><span class="block__index">04</span><h2 class="block__title">Dự án chọn lọc</h2></div>
           <span class="block__meta" id="workCounter">01 / 05</span>
         </div>
         <div class="work-stage">
@@ -536,9 +704,85 @@
       </div>
     </section>
 
+    <!-- ⭐ TESTIMONIALS -->
+    <section class="block block--line">
+      <div class="block__head reveal">
+        <div class="left"><span class="block__index">05</span><h2 class="block__title">Khách hàng nói gì</h2></div>
+        <span class="block__meta">Testimonials / Kind words</span>
+      </div>
+      <div class="testimonials">
+        <div class="testimonial reveal">
+          <p class="testimonial__quote">"Lâm đã biến ý tưởng mơ hồ của chúng tôi thành một website <em>đầy cảm xúc</em>. Chuyển động mượt, tương tác tinh tế, và khách hàng liên tục khen."</p>
+          <div class="testimonial__author">
+            <div class="testimonial__avatar">MT</div>
+            <div class="testimonial__info"><strong>Minh Trang</strong><span>Founder · Aurora Studio</span></div>
+            <div class="testimonial__stars">★★★★★</div>
+          </div>
+        </div>
+        <div class="testimonial reveal">
+          <p class="testimonial__quote">"Tôi đã làm việc với nhiều dev nhưng chưa ai <em>chăm chút từng pixel</em> như vậy. Website mới giúp tỷ lệ chuyển đổi tăng 40%."</p>
+          <div class="testimonial__author">
+            <div class="testimonial__avatar">HQ</div>
+            <div class="testimonial__info"><strong>Hoàng Quân</strong><span>CMO · Nébula</span></div>
+            <div class="testimonial__stars">★★★★★</div>
+          </div>
+        </div>
+        <div class="testimonial reveal">
+          <p class="testimonial__quote">"Làm việc với Lâm như có một <em>đối tác sáng tạo</em> thực sự. Không chỉ code, anh ấy còn đóng góp ý tưởng thiết kế và UX."</p>
+          <div class="testimonial__author">
+            <div class="testimonial__avatar">LA</div>
+            <div class="testimonial__info"><strong>Linh Anh</strong><span>Art Director · Kinetic</span></div>
+            <div class="testimonial__stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⭐ AWARDS -->
+    <section class="block block--line">
+      <div class="block__head reveal">
+        <div class="left"><span class="block__index">06</span><h2 class="block__title">Giải thưởng & công nhận</h2></div>
+        <span class="block__meta">Awards / Recognition</span>
+      </div>
+      <div class="awards">
+        <div class="award reveal">
+          <span class="award__year">2025</span>
+          <div class="award__body">
+            <div class="award__title">Site of the Day — <em>Aurora Studio</em></div>
+            <div class="award__org">Awwwards · Honorable Mention</div>
+          </div>
+          <span class="award__badge">Awwwards</span>
+        </div>
+        <div class="award reveal">
+          <span class="award__year">2024</span>
+          <div class="award__body">
+            <div class="award__title">Best Interactive Experience — <em>Nébula</em></div>
+            <div class="award__org">CSS Design Awards · Winner</div>
+          </div>
+          <span class="award__badge">CSSDA</span>
+        </div>
+        <div class="award reveal">
+          <span class="award__year">2024</span>
+          <div class="award__body">
+            <div class="award__title">Developer Award — <em>Kinetic Type</em></div>
+            <div class="award__org">FWA · Site of the Day</div>
+          </div>
+          <span class="award__badge">FWA</span>
+        </div>
+        <div class="award reveal">
+          <span class="award__year">2023</span>
+          <div class="award__body">
+            <div class="award__title">Top 10 Vietnam Web Design — <em>Lumen OS</em></div>
+            <div class="award__org">Vietnam Design Week</div>
+          </div>
+          <span class="award__badge">VDW</span>
+        </div>
+      </div>
+    </section>
+
     <section class="block block--line" style="padding-top:clamp(80px,14vh,140px);">
       <div class="block__head reveal">
-        <div class="left"><span class="block__index">04</span><h2 class="block__title">Con số</h2></div>
+        <div class="left"><span class="block__index">07</span><h2 class="block__title">Con số</h2></div>
         <span class="block__meta">Numbers / By the way</span>
       </div>
       <div class="stats">
@@ -563,9 +807,39 @@
       </div>
     </section>
 
+    <!-- ⭐ FAQ -->
+    <section class="block block--line">
+      <div class="block__head reveal">
+        <div class="left"><span class="block__index">08</span><h2 class="block__title">Câu hỏi thường gặp</h2></div>
+        <span class="block__meta">FAQ / Common questions</span>
+      </div>
+      <div class="faq">
+        <div class="faq-item reveal">
+          <button class="faq-q">Chi phí làm một website tương tác là bao nhiêu?<span class="faq-q__icon"></span></button>
+          <div class="faq-a"><div class="faq-a__inner">Tuỳ vào độ phức tạp. Một landing page có chuyển động cơ bản khoảng <em>15-30 triệu</em>. Một website 3D tương tác đầy đủ, nhiều trang có thể từ <em>50-150 triệu</em>. Tôi luôn báo giá chi tiết sau khi trao đổi cụ thể.</div></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q">Thời gian hoàn thành một dự án mất bao lâu?<span class="faq-q__icon"></span></button>
+          <div class="faq-a"><div class="faq-a__inner">Thông thường <em>4-8 tuần</em> cho một dự án tiêu chuẩn, từ 8-12 tuần cho dự án phức tạp. Thời gian cụ thể sẽ được thống nhất sau buổi kickoff đầu tiên.</div></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q">Anh có nhận chỉnh sửa website đã có sẵn không?<span class="faq-q__icon"></span></button>
+          <div class="faq-a"><div class="faq-a__inner">Có. Tôi nhận <em>tối ưu, nâng cấp</em> và thêm tính năng tương tác cho website hiện tại. Nhưng tôi cần xem source code trước để đánh giá mức độ khả thi.</div></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q">Sau khi bàn giao, tôi có được hỗ trợ không?<span class="faq-q__icon"></span></button>
+          <div class="faq-a"><div class="faq-a__inner">Có. Mọi dự án đều có <em>30 ngày bảo hành miễn phí</em> sau bàn giao để fix bug. Sau đó, chúng ta có thể ký hợp đồng bảo trì dài hạn nếu bạn cần.</div></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q">Tôi không rành kỹ thuật, có làm việc được không?<span class="faq-q__icon"></span></button>
+          <div class="faq-a"><div class="faq-a__inner">Hoàn toàn được. Tôi sẽ <em>giải thích mọi thứ bằng ngôn ngữ đơn giản</em>, cung cấp demo để bạn xem trước, và hướng dẫn bạn cách quản lý website sau khi bàn giao.</div></div>
+        </div>
+      </div>
+    </section>
+
     <section class="contact" id="contact">
       <div class="block__head reveal">
-        <div class="left"><span class="block__index">05</span><h2 class="block__title">Liên hệ</h2></div>
+        <div class="left"><span class="block__index">09</span><h2 class="block__title">Liên hệ</h2></div>
         <span class="block__meta">Contact / Say hi</span>
       </div>
       <h2 class="contact__title reveal">Cùng nhau tạo ra điều <em>phi thường</em>.</h2>
@@ -661,13 +935,9 @@
   var blobGeo = new THREE.IcosahedronGeometry(1.72, window.innerWidth < 768 ? 32 : 64);
   var blobMat = new THREE.ShaderMaterial({
     uniforms: {
-      uTime: { value: 0 },
-      uNoiseAmp: { value: 0.4 },
-      uNoiseFreq: { value: 1.15 },
-      uColorA: { value: new THREE.Color('#0d0d1a') },
-      uColorB: { value: new THREE.Color('#6c5ce7') },
-      uColorC: { value: new THREE.Color('#4ecdc4') },
-      uColorD: { value: new THREE.Color('#ffb088') }
+      uTime: { value: 0 }, uNoiseAmp: { value: 0.4 }, uNoiseFreq: { value: 1.15 },
+      uColorA: { value: new THREE.Color('#0d0d1a') }, uColorB: { value: new THREE.Color('#6c5ce7') },
+      uColorC: { value: new THREE.Color('#4ecdc4') }, uColorD: { value: new THREE.Color('#ffb088') }
     },
     vertexShader: [
       'uniform float uTime, uNoiseAmp, uNoiseFreq;',
@@ -734,11 +1004,7 @@
   var COUNT = window.innerWidth < 768 ? 1000 : 2600;
   var positions = new Float32Array(COUNT * 3);
   var colorsArr = new Float32Array(COUNT * 3);
-  var cA = new THREE.Color('#8b7cf6');
-  var cB = new THREE.Color('#5eead4');
-  var cC = new THREE.Color('#fbbf24');
-  var cTmp = new THREE.Color();
-
+  var cA = new THREE.Color('#8b7cf6'), cB = new THREE.Color('#5eead4'), cC = new THREE.Color('#fbbf24'), cTmp = new THREE.Color();
   for (var i = 0; i < COUNT; i++){
     var r = 3.8 + Math.pow(Math.random(), 0.65) * 14;
     var theta = Math.random() * Math.PI * 2;
@@ -747,18 +1013,12 @@
     positions[i*3 + 1] = r * Math.cos(phi) * 0.72;
     positions[i*3 + 2] = r * Math.sin(phi) * Math.sin(theta);
     var t = Math.random();
-    if (t < 0.42) cTmp.copy(cA);
-    else if (t < 0.78) cTmp.copy(cB);
-    else cTmp.copy(cC);
-    colorsArr[i*3] = cTmp.r;
-    colorsArr[i*3 + 1] = cTmp.g;
-    colorsArr[i*3 + 2] = cTmp.b;
+    if (t < 0.42) cTmp.copy(cA); else if (t < 0.78) cTmp.copy(cB); else cTmp.copy(cC);
+    colorsArr[i*3] = cTmp.r; colorsArr[i*3+1] = cTmp.g; colorsArr[i*3+2] = cTmp.b;
   }
-
   var pGeo = new THREE.BufferGeometry();
   pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
   pGeo.setAttribute('color', new THREE.BufferAttribute(colorsArr, 3));
-
   var pMat = new THREE.PointsMaterial({
     size: 0.055, map: makeDot(), transparent: true, opacity: 0.75,
     depthWrite: false, blending: THREE.AdditiveBlending, sizeAttenuation: true, vertexColors: true
@@ -783,16 +1043,14 @@
     return keys[i].clone().lerp(keys[i + 1], f);
   }
 
-  var mouse = { x: 0, y: 0 };
-  var smoothM = { x: 0, y: 0 };
+  var mouse = { x: 0, y: 0 }, smoothM = { x: 0, y: 0 };
   window.addEventListener('mousemove', function(e){
     mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
     mouse.y = (e.clientY / window.innerHeight) * 2 - 1;
   }, { passive: true });
 
   var clock = new THREE.Clock();
-  var scrollSmooth = 0;
-  var running = true;
+  var scrollSmooth = 0, running = true, rafId;
   var scrollProgressEl = document.getElementById('scrollProgress');
 
   function tick(){
@@ -820,9 +1078,7 @@
     blob.position.z = -progress * 1.2;
 
     ringsGroup.rotation.y += 0.001;
-    ring1.rotation.z += 0.0015;
-    ring2.rotation.z -= 0.0011;
-    ring3.rotation.z += 0.0008;
+    ring1.rotation.z += 0.0015; ring2.rotation.z -= 0.0011; ring3.rotation.z += 0.0008;
     ringsGroup.rotation.x = Math.sin(t * 0.2) * 0.14;
     ringsGroup.position.z = -progress * 1.0;
 
@@ -832,7 +1088,7 @@
 
     renderer.render(scene, camera);
     if (scrollProgressEl) scrollProgressEl.style.width = (progress * 100) + '%';
-    requestAnimationFrame(tick);
+    rafId = requestAnimationFrame(tick);
   }
   tick();
 
@@ -853,12 +1109,10 @@
   var cur = { x: window.innerWidth/2, y: window.innerHeight/2 };
   var curS = { x: window.innerWidth/2, y: window.innerHeight/2 };
   var dotP = { x: window.innerWidth/2, y: window.innerHeight/2 };
-
   window.addEventListener('mousemove', function(e){
     cur.x = e.clientX; cur.y = e.clientY;
     dotP.x = e.clientX; dotP.y = e.clientY;
   }, { passive: true });
-
   (function cursorLoop(){
     curS.x += (cur.x - curS.x) * 0.16;
     curS.y += (cur.y - curS.y) * 0.16;
@@ -867,7 +1121,7 @@
     requestAnimationFrame(cursorLoop);
   })();
 
-  Array.prototype.forEach.call(document.querySelectorAll('a, button, .project, .client, .service'), function(el){
+  Array.prototype.forEach.call(document.querySelectorAll('a, button, .project, .client, .service, .process-card, .testimonial, .award, .faq-q'), function(el){
     el.addEventListener('mouseenter', function(){ cursorEl.classList.add('is-hover'); });
     el.addEventListener('mouseleave', function(){ cursorEl.classList.remove('is-hover'); });
   });
@@ -907,16 +1161,31 @@
   }, { threshold: 0.5 });
   Array.prototype.forEach.call(document.querySelectorAll('[data-count]'), function(el){ counterIO.observe(el); });
 
+  /* FAQ accordion */
+  Array.prototype.forEach.call(document.querySelectorAll('.faq-item'), function(item){
+    var btn = item.querySelector('.faq-q');
+    var ans = item.querySelector('.faq-a');
+    btn.addEventListener('click', function(){
+      var isOpen = item.classList.contains('open');
+      // Close all
+      Array.prototype.forEach.call(document.querySelectorAll('.faq-item'), function(other){
+        other.classList.remove('open');
+        other.querySelector('.faq-a').style.maxHeight = '0px';
+      });
+      if (!isOpen){
+        item.classList.add('open');
+        ans.style.maxHeight = ans.scrollHeight + 'px';
+      }
+    });
+  });
+
   var workSection = document.querySelector('.work-scroll');
   var workTrack = document.getElementById('workTrack');
   var workCounter = document.getElementById('workCounter');
   var workDots = document.getElementById('workDots').children;
   var projects = Array.prototype.slice.call(workTrack.querySelectorAll('.project'));
 
-  var trackDistance = 0;
-  var targetX = 0;
-  var currentX = 0;
-  var activeIdx = -1;
+  var trackDistance = 0, targetX = 0, currentX = 0, activeIdx = -1;
 
   function measureTrack(){
     if (!workTrack || !projects.length) return;
@@ -936,14 +1205,11 @@
     if (totalScroll <= 0) return;
     var p = Math.min(Math.max(-rect.top / totalScroll, 0), 1);
     targetX = -p * trackDistance;
-
     var idx = Math.min(Math.floor(p * projects.length), projects.length - 1);
     if (idx !== activeIdx){
       activeIdx = idx;
       if (workCounter) workCounter.textContent = '0' + (idx + 1) + ' / 0' + projects.length;
-      Array.prototype.forEach.call(workDots, function(d, i){
-        d.classList.toggle('active', i === idx);
-      });
+      Array.prototype.forEach.call(workDots, function(d, i){ d.classList.toggle('active', i === idx); });
     }
   }
 
@@ -952,7 +1218,6 @@
     var styles = window.getComputedStyle(workTrack);
     var gapPx = parseFloat(styles.columnGap || styles.gap) || 60;
     var padL = parseFloat(styles.paddingLeft) || 56;
-
     var x = padL + currentX;
     projects.forEach(function(el){
       var cardW = el.offsetWidth;
@@ -961,18 +1226,15 @@
       var dist = (cardCenterX - centerX) / (window.innerWidth * 0.72);
       var clamped = Math.max(-1.8, Math.min(1.8, dist));
       var eased = clamped * Math.abs(clamped) * 0.55 + clamped * 0.45;
-
       var rotateY = -eased * 26;
       var scale = 1 - Math.min(Math.abs(clamped) * 0.18, 0.28);
       var z = -Math.min(Math.abs(clamped) * 220, 260);
       var opacity = 1 - Math.min(Math.abs(clamped) * 0.55, 0.72);
       var bright = 1 - Math.min(Math.abs(clamped) * 0.5, 0.58);
-
       el.style.transform = 'translateZ(' + z + 'px) rotateY(' + rotateY + 'deg) scale(' + scale + ')';
       el.style.opacity = opacity;
       el.style.filter = 'brightness(' + bright + ')';
       el.style.zIndex = Math.round(100 - Math.abs(clamped) * 40);
-
       x += cardW + gapPx;
     });
   }
@@ -1022,30 +1284,20 @@
   var barEl = document.getElementById('loaderBar');
   var statusEl = document.getElementById('loaderStatus');
   var metaEl = document.getElementById('loaderMeta');
-
-  var LABELS = [
-    'Đang khởi tạo trải nghiệm',
-    'Tải tài nguyên 3D',
-    'Biên dịch shader',
-    'Đánh thức các hạt',
-    'Sẵn sàng'
-  ];
+  var LABELS = ['Đang khởi tạo trải nghiệm', 'Tải tài nguyên 3D', 'Biên dịch shader', 'Đánh thức các hạt', 'Sẵn sàng'];
 
   var loaderP = 0;
   var loaderTimer = setInterval(function(){
     loaderP += (100 - loaderP) * 0.06 + 0.8;
     if (loaderP > 99.5) loaderP = 100;
-
     var p = Math.min(loaderP, 100);
     numEl.textContent = Math.round(p);
     barEl.style.transform = 'scaleX(' + (p / 100) + ')';
-
     var li = Math.min(Math.floor((p / 100) * LABELS.length), LABELS.length - 1);
     if (statusEl.textContent !== LABELS[li]) {
       statusEl.textContent = LABELS[li];
       if (metaEl) metaEl.textContent = LABELS[li].split(' ').slice(-1)[0];
     }
-
     if (p >= 100){
       clearInterval(loaderTimer);
       setTimeout(function(){
@@ -1059,6 +1311,8 @@
 
   document.addEventListener('visibilitychange', function(){
     running = !document.hidden;
+    if (running) { clock.getDelta(); if(!rafId) tick(); }
+    else cancelAnimationFrame(rafId);
   });
 
   Array.prototype.forEach.call(document.querySelectorAll('a[href^="#"]'), function(a){
@@ -1066,10 +1320,7 @@
       var id = a.getAttribute('href');
       if (id.length > 1){
         var el = document.querySelector(id);
-        if (el){
-          e.preventDefault();
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        if (el){ e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
       }
     });
   });
